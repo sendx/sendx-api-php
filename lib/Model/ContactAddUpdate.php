@@ -14,7 +14,7 @@
 /**
  * SendX API
  *
- * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures   that SendX platform is able to satisfy such unforeseen use cases. They may range from building     custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form  required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",      \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status  The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data  The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message  This returns back human readable message. This is specially useful to make sense in case of error scenarios.
+ * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures that SendX platform is able to satisfy such unforeseen use cases. They may range from building custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",     \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message This returns back human readable message. This is specially useful to make sense in case of error scenarios.
  *
  * OpenAPI spec version: v1
  * 
@@ -74,7 +74,9 @@ class ContactAddUpdate implements ArrayAccess
         'country' => 'string',
         'state' => 'string',
         'city' => 'string',
-        'custom_fields' => 'string',
+        'tags' => 'int[]',
+        'lists' => 'int[]',
+        'custom_fields' => '\Swagger\Client\Model\ContactAddUpdateCustomFields',
         'team_id' => 'int'
     );
 
@@ -96,6 +98,8 @@ class ContactAddUpdate implements ArrayAccess
         'country' => 'country',
         'state' => 'state',
         'city' => 'city',
+        'tags' => 'tags',
+        'lists' => 'lists',
         'custom_fields' => 'custom_fields',
         'team_id' => 'team_id'
     );
@@ -118,6 +122,8 @@ class ContactAddUpdate implements ArrayAccess
         'country' => 'setCountry',
         'state' => 'setState',
         'city' => 'setCity',
+        'tags' => 'setTags',
+        'lists' => 'setLists',
         'custom_fields' => 'setCustomFields',
         'team_id' => 'setTeamId'
     );
@@ -140,6 +146,8 @@ class ContactAddUpdate implements ArrayAccess
         'country' => 'getCountry',
         'state' => 'getState',
         'city' => 'getCity',
+        'tags' => 'getTags',
+        'lists' => 'getLists',
         'custom_fields' => 'getCustomFields',
         'team_id' => 'getTeamId'
     );
@@ -173,6 +181,8 @@ class ContactAddUpdate implements ArrayAccess
         $this->container['country'] = isset($data['country']) ? $data['country'] : null;
         $this->container['state'] = isset($data['state']) ? $data['state'] : null;
         $this->container['city'] = isset($data['city']) ? $data['city'] : null;
+        $this->container['tags'] = isset($data['tags']) ? $data['tags'] : null;
+        $this->container['lists'] = isset($data['lists']) ? $data['lists'] : null;
         $this->container['custom_fields'] = isset($data['custom_fields']) ? $data['custom_fields'] : null;
         $this->container['team_id'] = isset($data['team_id']) ? $data['team_id'] : null;
     }
@@ -369,8 +379,50 @@ class ContactAddUpdate implements ArrayAccess
     }
 
     /**
+     * Gets tags
+     * @return int[]
+     */
+    public function getTags()
+    {
+        return $this->container['tags'];
+    }
+
+    /**
+     * Sets tags
+     * @param int[] $tags
+     * @return $this
+     */
+    public function setTags($tags)
+    {
+        $this->container['tags'] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Gets lists
+     * @return int[]
+     */
+    public function getLists()
+    {
+        return $this->container['lists'];
+    }
+
+    /**
+     * Sets lists
+     * @param int[] $lists
+     * @return $this
+     */
+    public function setLists($lists)
+    {
+        $this->container['lists'] = $lists;
+
+        return $this;
+    }
+
+    /**
      * Gets custom_fields
-     * @return string
+     * @return \Swagger\Client\Model\ContactAddUpdateCustomFields
      */
     public function getCustomFields()
     {
@@ -379,7 +431,7 @@ class ContactAddUpdate implements ArrayAccess
 
     /**
      * Sets custom_fields
-     * @param string $custom_fields
+     * @param \Swagger\Client\Model\ContactAddUpdateCustomFields $custom_fields
      * @return $this
      */
     public function setCustomFields($custom_fields)

@@ -1,10 +1,12 @@
 # Swagger\Client\ListApi
 
-All URIs are relative to *http://127.0.0.1:8080/api/v1*
+All URIs are relative to *http://api.sendx.io/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**listGet**](ListApi.md#listGet) | **GET** /list | Get information about all lists
+[**listListIdContactDelete**](ListApi.md#listListIdContactDelete) | **DELETE** /list/{listId}/contact | Remove a contact from a list
+[**listListIdContactPost**](ListApi.md#listListIdContactPost) | **POST** /list/{listId}/contact | Add a contact to a list
 [**listListIdContactsGet**](ListApi.md#listListIdContactsGet) | **GET** /list/{listId}/contacts | Find contacts belonging to a list
 [**listListIdDelete**](ListApi.md#listListIdDelete) | **DELETE** /list/{listId} | Deletes a list
 [**listListIdGet**](ListApi.md#listListIdGet) | **GET** /list/{listId} | Find list by ID
@@ -13,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **listGet**
-> \Swagger\Client\Model\InlineResponse2007 listGet($api_key)
+> \Swagger\Client\Model\InlineResponse2008 listGet($api_key)
 
 Get information about all lists
 
@@ -44,7 +46,104 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\InlineResponse2007**](../Model/InlineResponse2007.md)
+[**\Swagger\Client\Model\InlineResponse2008**](../Model/InlineResponse2008.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **listListIdContactDelete**
+> listListIdContactDelete($api_key, $list_id, $body)
+
+Remove a contact from a list
+
+
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\ListApi();
+$api_key = "api_key_example"; // string | 
+$list_id = 789; // int | ID of list for which contact needs to be remove
+$body = new \Swagger\Client\Model\ListContact(); // \Swagger\Client\Model\ListContact | Contact email and team id
+
+try {
+    $api_instance->listListIdContactDelete($api_key, $list_id, $body);
+} catch (Exception $e) {
+    echo 'Exception when calling ListApi->listListIdContactDelete: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **api_key** | **string**|  |
+ **list_id** | **int**| ID of list for which contact needs to be remove |
+ **body** | [**\Swagger\Client\Model\ListContact**](../Model/\Swagger\Client\Model\ListContact.md)| Contact email and team id |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **listListIdContactPost**
+> \Swagger\Client\Model\InlineResponse20015 listListIdContactPost($api_key, $list_id, $body)
+
+Add a contact to a list
+
+
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\ListApi();
+$api_key = "api_key_example"; // string | 
+$list_id = 789; // int | ID of list for which the contact needs to be added
+$body = new \Swagger\Client\Model\ListContact(); // \Swagger\Client\Model\ListContact | Contact email and team id
+
+try {
+    $result = $api_instance->listListIdContactPost($api_key, $list_id, $body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ListApi->listListIdContactPost: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **api_key** | **string**|  |
+ **list_id** | **int**| ID of list for which the contact needs to be added |
+ **body** | [**\Swagger\Client\Model\ListContact**](../Model/\Swagger\Client\Model\ListContact.md)| Contact email and team id |
+
+### Return type
+
+[**\Swagger\Client\Model\InlineResponse20015**](../Model/InlineResponse20015.md)
 
 ### Authorization
 
@@ -255,11 +354,11 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **listPost**
-> \Swagger\Client\Model\InlineResponse2008 listPost($api_key, $body)
+> \Swagger\Client\Model\InlineResponse2009 listPost($api_key, $body)
 
 Add a new list
 
-
+Adding a new list with all the fields. List type can be 0 - Single OptIn 1 - Double OptIn
 
 ### Example
 ```php
@@ -288,7 +387,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\InlineResponse2008**](../Model/InlineResponse2008.md)
+[**\Swagger\Client\Model\InlineResponse2009**](../Model/InlineResponse2009.md)
 
 ### Authorization
 

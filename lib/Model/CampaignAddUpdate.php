@@ -14,7 +14,7 @@
 /**
  * SendX API
  *
- * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures   that SendX platform is able to satisfy such unforeseen use cases. They may range from building     custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form  required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",      \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status  The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data  The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message  This returns back human readable message. This is specially useful to make sense in case of error scenarios.
+ * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures that SendX platform is able to satisfy such unforeseen use cases. They may range from building custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",     \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message This returns back human readable message. This is specially useful to make sense in case of error scenarios.
  *
  * OpenAPI spec version: v1
  * 
@@ -75,7 +75,9 @@ class CampaignAddUpdate implements ArrayAccess
         'metadata' => 'string',
         'team_id' => 'int',
         'provider_id' => 'int',
-        'list_ids' => 'int[]'
+        'list_ids' => 'int[]',
+        'tag_ids' => 'int[]',
+        'segment_ids' => 'int[]'
     );
 
     public static function swaggerTypes()
@@ -97,7 +99,9 @@ class CampaignAddUpdate implements ArrayAccess
         'metadata' => 'metadata',
         'team_id' => 'team_id',
         'provider_id' => 'provider_id',
-        'list_ids' => 'list_ids'
+        'list_ids' => 'list_ids',
+        'tag_ids' => 'tag_ids',
+        'segment_ids' => 'segment_ids'
     );
 
     public static function attributeMap()
@@ -119,7 +123,9 @@ class CampaignAddUpdate implements ArrayAccess
         'metadata' => 'setMetadata',
         'team_id' => 'setTeamId',
         'provider_id' => 'setProviderId',
-        'list_ids' => 'setListIds'
+        'list_ids' => 'setListIds',
+        'tag_ids' => 'setTagIds',
+        'segment_ids' => 'setSegmentIds'
     );
 
     public static function setters()
@@ -141,7 +147,9 @@ class CampaignAddUpdate implements ArrayAccess
         'metadata' => 'getMetadata',
         'team_id' => 'getTeamId',
         'provider_id' => 'getProviderId',
-        'list_ids' => 'getListIds'
+        'list_ids' => 'getListIds',
+        'tag_ids' => 'getTagIds',
+        'segment_ids' => 'getSegmentIds'
     );
 
     public static function getters()
@@ -175,6 +183,8 @@ class CampaignAddUpdate implements ArrayAccess
         $this->container['team_id'] = isset($data['team_id']) ? $data['team_id'] : null;
         $this->container['provider_id'] = isset($data['provider_id']) ? $data['provider_id'] : null;
         $this->container['list_ids'] = isset($data['list_ids']) ? $data['list_ids'] : null;
+        $this->container['tag_ids'] = isset($data['tag_ids']) ? $data['tag_ids'] : null;
+        $this->container['segment_ids'] = isset($data['segment_ids']) ? $data['segment_ids'] : null;
     }
 
     /**
@@ -406,6 +416,48 @@ class CampaignAddUpdate implements ArrayAccess
     public function setListIds($list_ids)
     {
         $this->container['list_ids'] = $list_ids;
+
+        return $this;
+    }
+
+    /**
+     * Gets tag_ids
+     * @return int[]
+     */
+    public function getTagIds()
+    {
+        return $this->container['tag_ids'];
+    }
+
+    /**
+     * Sets tag_ids
+     * @param int[] $tag_ids
+     * @return $this
+     */
+    public function setTagIds($tag_ids)
+    {
+        $this->container['tag_ids'] = $tag_ids;
+
+        return $this;
+    }
+
+    /**
+     * Gets segment_ids
+     * @return int[]
+     */
+    public function getSegmentIds()
+    {
+        return $this->container['segment_ids'];
+    }
+
+    /**
+     * Sets segment_ids
+     * @param int[] $segment_ids
+     * @return $this
+     */
+    public function setSegmentIds($segment_ids)
+    {
+        $this->container['segment_ids'] = $segment_ids;
 
         return $this;
     }

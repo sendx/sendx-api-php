@@ -1,6 +1,6 @@
 # Swagger\Client\TeamApi
 
-All URIs are relative to *http://127.0.0.1:8080/api/v1*
+All URIs are relative to *http://api.sendx.io/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 
 # **teamGet**
-> \Swagger\Client\Model\InlineResponse20012 teamGet($api_key)
+> \Swagger\Client\Model\InlineResponse20013 teamGet($api_key)
 
 Get information about all teams
 
@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\InlineResponse20012**](../Model/InlineResponse20012.md)
+[**\Swagger\Client\Model\InlineResponse20013**](../Model/InlineResponse20013.md)
 
 ### Authorization
 
@@ -61,7 +61,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **teamPost**
-> \Swagger\Client\Model\InlineResponse20013 teamPost($api_key, $body)
+> \Swagger\Client\Model\InlineResponse20014 teamPost($api_key, $body)
 
 Add a new team
 
@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\InlineResponse20013**](../Model/InlineResponse20013.md)
+[**\Swagger\Client\Model\InlineResponse20014**](../Model/InlineResponse20014.md)
 
 ### Authorization
 

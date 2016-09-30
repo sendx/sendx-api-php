@@ -1,15 +1,112 @@
 # Swagger\Client\ContactApi
 
-All URIs are relative to *http://127.0.0.1:8080/api/v1*
+All URIs are relative to *http://api.sendx.io/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**contactBulkPost**](ContactApi.md#contactBulkPost) | **POST** /contact/bulk | Add a bulk of contacts in a request
+[**contactContactIdCustomfieldPost**](ContactApi.md#contactContactIdCustomfieldPost) | **POST** /contact/{contactId}/customfield | Add Customfield data for a contact
 [**contactContactIdDelete**](ContactApi.md#contactContactIdDelete) | **DELETE** /contact/{contactId} | Deletes a contact
 [**contactContactIdGet**](ContactApi.md#contactContactIdGet) | **GET** /contact/{contactId} | Find contact by ID
 [**contactContactIdPut**](ContactApi.md#contactContactIdPut) | **PUT** /contact/{contactId} | Update a contact by ID
 [**contactGet**](ContactApi.md#contactGet) | **GET** /contact | Get information about all contacts
 [**contactPost**](ContactApi.md#contactPost) | **POST** /contact | Add a new contact
 
+
+# **contactBulkPost**
+> contactBulkPost($api_key, $body)
+
+Add a bulk of contacts in a request
+
+
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\ContactApi();
+$api_key = "api_key_example"; // string | 
+$body = new \Swagger\Client\Model\BulkContact(); // \Swagger\Client\Model\BulkContact | All contacts which need to be added
+
+try {
+    $api_instance->contactBulkPost($api_key, $body);
+} catch (Exception $e) {
+    echo 'Exception when calling ContactApi->contactBulkPost: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **api_key** | **string**|  |
+ **body** | [**\Swagger\Client\Model\BulkContact**](../Model/\Swagger\Client\Model\BulkContact.md)| All contacts which need to be added |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **contactContactIdCustomfieldPost**
+> \Swagger\Client\Model\InlineResponse2005 contactContactIdCustomfieldPost($api_key, $contact_id, $body)
+
+Add Customfield data for a contact
+
+
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\ContactApi();
+$api_key = "api_key_example"; // string | 
+$contact_id = 789; // int | ID of contact that needs to be fetched
+$body = new \Swagger\Client\Model\ContactCustomfield(); // \Swagger\Client\Model\ContactCustomfield | Contact object that needs to be added
+
+try {
+    $result = $api_instance->contactContactIdCustomfieldPost($api_key, $contact_id, $body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ContactApi->contactContactIdCustomfieldPost: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **api_key** | **string**|  |
+ **contact_id** | **int**| ID of contact that needs to be fetched |
+ **body** | [**\Swagger\Client\Model\ContactCustomfield**](../Model/\Swagger\Client\Model\ContactCustomfield.md)| Contact object that needs to be added |
+
+### Return type
+
+[**\Swagger\Client\Model\InlineResponse2005**](../Model/InlineResponse2005.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **contactContactIdDelete**
 > contactContactIdDelete($api_key, $contact_id)
@@ -105,7 +202,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **contactContactIdPut**
-> \Swagger\Client\Model\InlineResponse2002 contactContactIdPut($api_key, $contact_id, $body)
+> \Swagger\Client\Model\InlineResponse2004 contactContactIdPut($api_key, $contact_id, $body)
 
 Update a contact by ID
 
@@ -140,7 +237,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\InlineResponse2002**](../Model/InlineResponse2002.md)
+[**\Swagger\Client\Model\InlineResponse2004**](../Model/InlineResponse2004.md)
 
 ### Authorization
 

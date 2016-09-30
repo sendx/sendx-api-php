@@ -14,7 +14,7 @@
 /**
  * SendX API
  *
- * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures   that SendX platform is able to satisfy such unforeseen use cases. They may range from building     custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form  required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",      \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status  The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data  The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message  This returns back human readable message. This is specially useful to make sense in case of error scenarios.
+ * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures that SendX platform is able to satisfy such unforeseen use cases. They may range from building custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",     \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message This returns back human readable message. This is specially useful to make sense in case of error scenarios.
  *
  * OpenAPI spec version: v1
  * 
@@ -70,26 +70,24 @@ class ModelList implements ArrayAccess
         'encrypted_id' => 'string',
         'name' => 'string',
         'type' => 'int',
+        'thankyou_from_name' => 'string',
         'thankyou_from_email' => 'string',
         'thankyou_mail_subject' => 'string',
         'thankyou_mail_message' => 'string',
+        'confirm_from_name' => 'string',
         'confirm_from_email' => 'string',
         'confirm_mail_subject' => 'string',
         'confirm_mail_message' => 'string',
+        'goodbye_from_name' => 'string',
         'goodbye_from_email' => 'string',
         'goodbye_mail_subject' => 'string',
         'goodbye_mail_message' => 'string',
-        'send_thank_you_mail' => 'bool',
+        'send_thankyou_mail' => 'bool',
         'send_confirm_unsubscribe_mail' => 'bool',
         'subscribe_success_page' => 'string',
         'confirm_success_page' => 'string',
         'unsubscribe_success_page' => 'string',
-        'team_id' => 'int',
-        'subscribed' => 'int',
-        'confirmed' => 'int',
-        'unsubscribed' => 'int',
-        'bounced' => 'int',
-        'marked_spam' => 'int'
+        'team_id' => 'int'
     );
 
     public static function swaggerTypes()
@@ -106,26 +104,24 @@ class ModelList implements ArrayAccess
         'encrypted_id' => 'encryptedId',
         'name' => 'name',
         'type' => 'type',
+        'thankyou_from_name' => 'thankyou_from_name',
         'thankyou_from_email' => 'thankyou_from_email',
-        'thankyou_mail_subject' => 'thankyouMailSubject',
-        'thankyou_mail_message' => 'thankyouMailMessage',
+        'thankyou_mail_subject' => 'thankyou_mail_subject',
+        'thankyou_mail_message' => 'thankyou_mail_message',
+        'confirm_from_name' => 'confirm_from_name',
         'confirm_from_email' => 'confirm_from_email',
-        'confirm_mail_subject' => 'confirmMailSubject',
-        'confirm_mail_message' => 'confirmMailMessage',
+        'confirm_mail_subject' => 'confirm_mail_subject',
+        'confirm_mail_message' => 'confirm_mail_message',
+        'goodbye_from_name' => 'goodbye_from_name',
         'goodbye_from_email' => 'goodbye_from_email',
-        'goodbye_mail_subject' => 'goodbyeMailSubject',
-        'goodbye_mail_message' => 'goodbyeMailMessage',
-        'send_thank_you_mail' => 'sendThankYouMail',
-        'send_confirm_unsubscribe_mail' => 'sendConfirmUnsubscribeMail',
-        'subscribe_success_page' => 'subscribeSuccessPage',
-        'confirm_success_page' => 'confirmSuccessPage',
-        'unsubscribe_success_page' => 'unsubscribeSuccessPage',
-        'team_id' => 'team_id',
-        'subscribed' => 'subscribed',
-        'confirmed' => 'confirmed',
-        'unsubscribed' => 'unsubscribed',
-        'bounced' => 'bounced',
-        'marked_spam' => 'marked_spam'
+        'goodbye_mail_subject' => 'goodbye_mail_subject',
+        'goodbye_mail_message' => 'goodbye_mail_message',
+        'send_thankyou_mail' => 'send_thankyou_mail',
+        'send_confirm_unsubscribe_mail' => 'send_confirm_unsubscribe_mail',
+        'subscribe_success_page' => 'subscribe_success_page',
+        'confirm_success_page' => 'confirm_success_page',
+        'unsubscribe_success_page' => 'unsubscribe_success_page',
+        'team_id' => 'team_id'
     );
 
     public static function attributeMap()
@@ -142,26 +138,24 @@ class ModelList implements ArrayAccess
         'encrypted_id' => 'setEncryptedId',
         'name' => 'setName',
         'type' => 'setType',
+        'thankyou_from_name' => 'setThankyouFromName',
         'thankyou_from_email' => 'setThankyouFromEmail',
         'thankyou_mail_subject' => 'setThankyouMailSubject',
         'thankyou_mail_message' => 'setThankyouMailMessage',
+        'confirm_from_name' => 'setConfirmFromName',
         'confirm_from_email' => 'setConfirmFromEmail',
         'confirm_mail_subject' => 'setConfirmMailSubject',
         'confirm_mail_message' => 'setConfirmMailMessage',
+        'goodbye_from_name' => 'setGoodbyeFromName',
         'goodbye_from_email' => 'setGoodbyeFromEmail',
         'goodbye_mail_subject' => 'setGoodbyeMailSubject',
         'goodbye_mail_message' => 'setGoodbyeMailMessage',
-        'send_thank_you_mail' => 'setSendThankYouMail',
+        'send_thankyou_mail' => 'setSendThankyouMail',
         'send_confirm_unsubscribe_mail' => 'setSendConfirmUnsubscribeMail',
         'subscribe_success_page' => 'setSubscribeSuccessPage',
         'confirm_success_page' => 'setConfirmSuccessPage',
         'unsubscribe_success_page' => 'setUnsubscribeSuccessPage',
-        'team_id' => 'setTeamId',
-        'subscribed' => 'setSubscribed',
-        'confirmed' => 'setConfirmed',
-        'unsubscribed' => 'setUnsubscribed',
-        'bounced' => 'setBounced',
-        'marked_spam' => 'setMarkedSpam'
+        'team_id' => 'setTeamId'
     );
 
     public static function setters()
@@ -178,26 +172,24 @@ class ModelList implements ArrayAccess
         'encrypted_id' => 'getEncryptedId',
         'name' => 'getName',
         'type' => 'getType',
+        'thankyou_from_name' => 'getThankyouFromName',
         'thankyou_from_email' => 'getThankyouFromEmail',
         'thankyou_mail_subject' => 'getThankyouMailSubject',
         'thankyou_mail_message' => 'getThankyouMailMessage',
+        'confirm_from_name' => 'getConfirmFromName',
         'confirm_from_email' => 'getConfirmFromEmail',
         'confirm_mail_subject' => 'getConfirmMailSubject',
         'confirm_mail_message' => 'getConfirmMailMessage',
+        'goodbye_from_name' => 'getGoodbyeFromName',
         'goodbye_from_email' => 'getGoodbyeFromEmail',
         'goodbye_mail_subject' => 'getGoodbyeMailSubject',
         'goodbye_mail_message' => 'getGoodbyeMailMessage',
-        'send_thank_you_mail' => 'getSendThankYouMail',
+        'send_thankyou_mail' => 'getSendThankyouMail',
         'send_confirm_unsubscribe_mail' => 'getSendConfirmUnsubscribeMail',
         'subscribe_success_page' => 'getSubscribeSuccessPage',
         'confirm_success_page' => 'getConfirmSuccessPage',
         'unsubscribe_success_page' => 'getUnsubscribeSuccessPage',
-        'team_id' => 'getTeamId',
-        'subscribed' => 'getSubscribed',
-        'confirmed' => 'getConfirmed',
-        'unsubscribed' => 'getUnsubscribed',
-        'bounced' => 'getBounced',
-        'marked_spam' => 'getMarkedSpam'
+        'team_id' => 'getTeamId'
     );
 
     public static function getters()
@@ -225,26 +217,24 @@ class ModelList implements ArrayAccess
         $this->container['encrypted_id'] = isset($data['encrypted_id']) ? $data['encrypted_id'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['thankyou_from_name'] = isset($data['thankyou_from_name']) ? $data['thankyou_from_name'] : null;
         $this->container['thankyou_from_email'] = isset($data['thankyou_from_email']) ? $data['thankyou_from_email'] : null;
         $this->container['thankyou_mail_subject'] = isset($data['thankyou_mail_subject']) ? $data['thankyou_mail_subject'] : null;
         $this->container['thankyou_mail_message'] = isset($data['thankyou_mail_message']) ? $data['thankyou_mail_message'] : null;
+        $this->container['confirm_from_name'] = isset($data['confirm_from_name']) ? $data['confirm_from_name'] : null;
         $this->container['confirm_from_email'] = isset($data['confirm_from_email']) ? $data['confirm_from_email'] : null;
         $this->container['confirm_mail_subject'] = isset($data['confirm_mail_subject']) ? $data['confirm_mail_subject'] : null;
         $this->container['confirm_mail_message'] = isset($data['confirm_mail_message']) ? $data['confirm_mail_message'] : null;
+        $this->container['goodbye_from_name'] = isset($data['goodbye_from_name']) ? $data['goodbye_from_name'] : null;
         $this->container['goodbye_from_email'] = isset($data['goodbye_from_email']) ? $data['goodbye_from_email'] : null;
         $this->container['goodbye_mail_subject'] = isset($data['goodbye_mail_subject']) ? $data['goodbye_mail_subject'] : null;
         $this->container['goodbye_mail_message'] = isset($data['goodbye_mail_message']) ? $data['goodbye_mail_message'] : null;
-        $this->container['send_thank_you_mail'] = isset($data['send_thank_you_mail']) ? $data['send_thank_you_mail'] : null;
+        $this->container['send_thankyou_mail'] = isset($data['send_thankyou_mail']) ? $data['send_thankyou_mail'] : null;
         $this->container['send_confirm_unsubscribe_mail'] = isset($data['send_confirm_unsubscribe_mail']) ? $data['send_confirm_unsubscribe_mail'] : null;
         $this->container['subscribe_success_page'] = isset($data['subscribe_success_page']) ? $data['subscribe_success_page'] : null;
         $this->container['confirm_success_page'] = isset($data['confirm_success_page']) ? $data['confirm_success_page'] : null;
         $this->container['unsubscribe_success_page'] = isset($data['unsubscribe_success_page']) ? $data['unsubscribe_success_page'] : null;
         $this->container['team_id'] = isset($data['team_id']) ? $data['team_id'] : null;
-        $this->container['subscribed'] = isset($data['subscribed']) ? $data['subscribed'] : null;
-        $this->container['confirmed'] = isset($data['confirmed']) ? $data['confirmed'] : null;
-        $this->container['unsubscribed'] = isset($data['unsubscribed']) ? $data['unsubscribed'] : null;
-        $this->container['bounced'] = isset($data['bounced']) ? $data['bounced'] : null;
-        $this->container['marked_spam'] = isset($data['marked_spam']) ? $data['marked_spam'] : null;
     }
 
     /**
@@ -355,6 +345,27 @@ class ModelList implements ArrayAccess
     }
 
     /**
+     * Gets thankyou_from_name
+     * @return string
+     */
+    public function getThankyouFromName()
+    {
+        return $this->container['thankyou_from_name'];
+    }
+
+    /**
+     * Sets thankyou_from_name
+     * @param string $thankyou_from_name
+     * @return $this
+     */
+    public function setThankyouFromName($thankyou_from_name)
+    {
+        $this->container['thankyou_from_name'] = $thankyou_from_name;
+
+        return $this;
+    }
+
+    /**
      * Gets thankyou_from_email
      * @return string
      */
@@ -413,6 +424,27 @@ class ModelList implements ArrayAccess
     public function setThankyouMailMessage($thankyou_mail_message)
     {
         $this->container['thankyou_mail_message'] = $thankyou_mail_message;
+
+        return $this;
+    }
+
+    /**
+     * Gets confirm_from_name
+     * @return string
+     */
+    public function getConfirmFromName()
+    {
+        return $this->container['confirm_from_name'];
+    }
+
+    /**
+     * Sets confirm_from_name
+     * @param string $confirm_from_name
+     * @return $this
+     */
+    public function setConfirmFromName($confirm_from_name)
+    {
+        $this->container['confirm_from_name'] = $confirm_from_name;
 
         return $this;
     }
@@ -481,6 +513,27 @@ class ModelList implements ArrayAccess
     }
 
     /**
+     * Gets goodbye_from_name
+     * @return string
+     */
+    public function getGoodbyeFromName()
+    {
+        return $this->container['goodbye_from_name'];
+    }
+
+    /**
+     * Sets goodbye_from_name
+     * @param string $goodbye_from_name
+     * @return $this
+     */
+    public function setGoodbyeFromName($goodbye_from_name)
+    {
+        $this->container['goodbye_from_name'] = $goodbye_from_name;
+
+        return $this;
+    }
+
+    /**
      * Gets goodbye_from_email
      * @return string
      */
@@ -544,22 +597,22 @@ class ModelList implements ArrayAccess
     }
 
     /**
-     * Gets send_thank_you_mail
+     * Gets send_thankyou_mail
      * @return bool
      */
-    public function getSendThankYouMail()
+    public function getSendThankyouMail()
     {
-        return $this->container['send_thank_you_mail'];
+        return $this->container['send_thankyou_mail'];
     }
 
     /**
-     * Sets send_thank_you_mail
-     * @param bool $send_thank_you_mail
+     * Sets send_thankyou_mail
+     * @param bool $send_thankyou_mail
      * @return $this
      */
-    public function setSendThankYouMail($send_thank_you_mail)
+    public function setSendThankyouMail($send_thankyou_mail)
     {
-        $this->container['send_thank_you_mail'] = $send_thank_you_mail;
+        $this->container['send_thankyou_mail'] = $send_thankyou_mail;
 
         return $this;
     }
@@ -665,111 +718,6 @@ class ModelList implements ArrayAccess
     public function setTeamId($team_id)
     {
         $this->container['team_id'] = $team_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets subscribed
-     * @return int
-     */
-    public function getSubscribed()
-    {
-        return $this->container['subscribed'];
-    }
-
-    /**
-     * Sets subscribed
-     * @param int $subscribed
-     * @return $this
-     */
-    public function setSubscribed($subscribed)
-    {
-        $this->container['subscribed'] = $subscribed;
-
-        return $this;
-    }
-
-    /**
-     * Gets confirmed
-     * @return int
-     */
-    public function getConfirmed()
-    {
-        return $this->container['confirmed'];
-    }
-
-    /**
-     * Sets confirmed
-     * @param int $confirmed
-     * @return $this
-     */
-    public function setConfirmed($confirmed)
-    {
-        $this->container['confirmed'] = $confirmed;
-
-        return $this;
-    }
-
-    /**
-     * Gets unsubscribed
-     * @return int
-     */
-    public function getUnsubscribed()
-    {
-        return $this->container['unsubscribed'];
-    }
-
-    /**
-     * Sets unsubscribed
-     * @param int $unsubscribed
-     * @return $this
-     */
-    public function setUnsubscribed($unsubscribed)
-    {
-        $this->container['unsubscribed'] = $unsubscribed;
-
-        return $this;
-    }
-
-    /**
-     * Gets bounced
-     * @return int
-     */
-    public function getBounced()
-    {
-        return $this->container['bounced'];
-    }
-
-    /**
-     * Sets bounced
-     * @param int $bounced
-     * @return $this
-     */
-    public function setBounced($bounced)
-    {
-        $this->container['bounced'] = $bounced;
-
-        return $this;
-    }
-
-    /**
-     * Gets marked_spam
-     * @return int
-     */
-    public function getMarkedSpam()
-    {
-        return $this->container['marked_spam'];
-    }
-
-    /**
-     * Sets marked_spam
-     * @param int $marked_spam
-     * @return $this
-     */
-    public function setMarkedSpam($marked_spam)
-    {
-        $this->container['marked_spam'] = $marked_spam;
 
         return $this;
     }

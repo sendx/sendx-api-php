@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **team_id** | **int** |  | [optional] 
 **provider_id** | **int** |  | [optional] 
 **list_ids** | **int[]** |  | [optional] 
+**tag_ids** | **int[]** |  | [optional] 
+**segment_ids** | **int[]** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

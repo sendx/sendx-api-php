@@ -1,6 +1,6 @@
 # Swagger\Client\TagApi
 
-All URIs are relative to *http://127.0.0.1:8080/api/v1*
+All URIs are relative to *http://api.sendx.io/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **tagGet**
-> \Swagger\Client\Model\InlineResponse2009 tagGet($api_key)
+> \Swagger\Client\Model\InlineResponse20010 tagGet($api_key)
 
 Get information about all tags
 
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\InlineResponse2009**](../Model/InlineResponse2009.md)
+[**\Swagger\Client\Model\InlineResponse20010**](../Model/InlineResponse20010.md)
 
 ### Authorization
 
@@ -60,7 +60,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **tagPost**
-> \Swagger\Client\Model\InlineResponse20010 tagPost($api_key, $body)
+> \Swagger\Client\Model\InlineResponse20011 tagPost($api_key, $body)
 
 Add a new tag
 
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\InlineResponse20010**](../Model/InlineResponse20010.md)
+[**\Swagger\Client\Model\InlineResponse20011**](../Model/InlineResponse20011.md)
 
 ### Authorization
 
@@ -155,7 +155,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **tagTagIdContactPost**
-> \Swagger\Client\Model\InlineResponse20011 tagTagIdContactPost($api_key, $tag_id, $body)
+> \Swagger\Client\Model\InlineResponse20012 tagTagIdContactPost($api_key, $tag_id, $body)
 
 Add a contact to a tag
 
@@ -190,7 +190,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\InlineResponse20011**](../Model/InlineResponse20011.md)
+[**\Swagger\Client\Model\InlineResponse20012**](../Model/InlineResponse20012.md)
 
 ### Authorization
 

@@ -1,16 +1,16 @@
-# Swagger\Client\SendApi
+# Swagger\Client\SegmentApi
 
-All URIs are relative to *http://127.0.0.1:8080/api/v1*
+All URIs are relative to *http://api.sendx.io/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**sendEmailPost**](SendApi.md#sendEmailPost) | **POST** /send/email | Send transactional email to user
+[**segmentGet**](SegmentApi.md#segmentGet) | **GET** /segment | Get information about all segments
 
 
-# **sendEmailPost**
-> sendEmailPost($api_key, $body)
+# **segmentGet**
+> \Swagger\Client\Model\InlineResponse20016 segmentGet($api_key)
 
-Send transactional email to user
+Get information about all segments
 
 
 
@@ -19,14 +19,14 @@ Send transactional email to user
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\SendApi();
+$api_instance = new Swagger\Client\Api\SegmentApi();
 $api_key = "api_key_example"; // string | 
-$body = new \Swagger\Client\Model\EMessage(); // \Swagger\Client\Model\EMessage | EMessage object that needs to be added
 
 try {
-    $api_instance->sendEmailPost($api_key, $body);
+    $result = $api_instance->segmentGet($api_key);
+    print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling SendApi->sendEmailPost: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SegmentApi->segmentGet: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -36,11 +36,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **api_key** | **string**|  |
- **body** | [**\Swagger\Client\Model\EMessage**](../Model/\Swagger\Client\Model\EMessage.md)| EMessage object that needs to be added |
 
 ### Return type
 
-void (empty response body)
+[**\Swagger\Client\Model\InlineResponse20016**](../Model/InlineResponse20016.md)
 
 ### Authorization
 

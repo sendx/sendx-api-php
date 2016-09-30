@@ -13,7 +13,7 @@
 /**
  * SendX API
  *
- * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures   that SendX platform is able to satisfy such unforeseen use cases. They may range from building     custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form  required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",      \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status  The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data  The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message  This returns back human readable message. This is specially useful to make sense in case of error scenarios.
+ * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures that SendX platform is able to satisfy such unforeseen use cases. They may range from building custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",     \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message This returns back human readable message. This is specially useful to make sense in case of error scenarios.
  *
  * OpenAPI spec version: v1
  * 
@@ -73,7 +73,7 @@ class ListApi
     {
         if ($apiClient == null) {
             $apiClient = new ApiClient();
-            $apiClient->getConfig()->setHost('http://127.0.0.1:8080/api/v1');
+            $apiClient->getConfig()->setHost('http://api.sendx.io/api/v1');
         }
 
         $this->apiClient = $apiClient;
@@ -108,7 +108,7 @@ class ListApi
      * Get information about all lists
      *
      * @param string $api_key  (required)
-     * @return \Swagger\Client\Model\InlineResponse2007
+     * @return \Swagger\Client\Model\InlineResponse2008
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function listGet($api_key)
@@ -123,7 +123,7 @@ class ListApi
      * Get information about all lists
      *
      * @param string $api_key  (required)
-     * @return Array of \Swagger\Client\Model\InlineResponse2007, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \Swagger\Client\Model\InlineResponse2008, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function listGetWithHttpInfo($api_key)
@@ -166,15 +166,223 @@ class ListApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\InlineResponse2007',
+                '\Swagger\Client\Model\InlineResponse2008',
                 '/list'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\InlineResponse2007', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\InlineResponse2008', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\InlineResponse2007', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\InlineResponse2008', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listListIdContactDelete
+     *
+     * Remove a contact from a list
+     *
+     * @param string $api_key  (required)
+     * @param int $list_id ID of list for which contact needs to be remove (required)
+     * @param \Swagger\Client\Model\ListContact $body Contact email and team id (required)
+     * @return void
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function listListIdContactDelete($api_key, $list_id, $body)
+    {
+        list($response) = $this->listListIdContactDeleteWithHttpInfo($api_key, $list_id, $body);
+        return $response;
+    }
+
+    /**
+     * Operation listListIdContactDeleteWithHttpInfo
+     *
+     * Remove a contact from a list
+     *
+     * @param string $api_key  (required)
+     * @param int $list_id ID of list for which contact needs to be remove (required)
+     * @param \Swagger\Client\Model\ListContact $body Contact email and team id (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function listListIdContactDeleteWithHttpInfo($api_key, $list_id, $body)
+    {
+        // verify the required parameter 'api_key' is set
+        if ($api_key === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $api_key when calling listListIdContactDelete');
+        }
+        // verify the required parameter 'list_id' is set
+        if ($list_id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $list_id when calling listListIdContactDelete');
+        }
+        // verify the required parameter 'body' is set
+        if ($body === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $body when calling listListIdContactDelete');
+        }
+        // parse inputs
+        $resourcePath = "/list/{listId}/contact";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
+
+        // header params
+        if ($api_key !== null) {
+            $headerParams['api_key'] = $this->apiClient->getSerializer()->toHeaderValue($api_key);
+        }
+        // path params
+        if ($list_id !== null) {
+            $resourcePath = str_replace(
+                "{" . "listId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($list_id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'DELETE',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                null,
+                '/list/{listId}/contact'
+            );
+
+            return array(null, $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listListIdContactPost
+     *
+     * Add a contact to a list
+     *
+     * @param string $api_key  (required)
+     * @param int $list_id ID of list for which the contact needs to be added (required)
+     * @param \Swagger\Client\Model\ListContact $body Contact email and team id (required)
+     * @return \Swagger\Client\Model\InlineResponse20015
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function listListIdContactPost($api_key, $list_id, $body)
+    {
+        list($response) = $this->listListIdContactPostWithHttpInfo($api_key, $list_id, $body);
+        return $response;
+    }
+
+    /**
+     * Operation listListIdContactPostWithHttpInfo
+     *
+     * Add a contact to a list
+     *
+     * @param string $api_key  (required)
+     * @param int $list_id ID of list for which the contact needs to be added (required)
+     * @param \Swagger\Client\Model\ListContact $body Contact email and team id (required)
+     * @return Array of \Swagger\Client\Model\InlineResponse20015, HTTP status code, HTTP response headers (array of strings)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function listListIdContactPostWithHttpInfo($api_key, $list_id, $body)
+    {
+        // verify the required parameter 'api_key' is set
+        if ($api_key === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $api_key when calling listListIdContactPost');
+        }
+        // verify the required parameter 'list_id' is set
+        if ($list_id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $list_id when calling listListIdContactPost');
+        }
+        // verify the required parameter 'body' is set
+        if ($body === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $body when calling listListIdContactPost');
+        }
+        // parse inputs
+        $resourcePath = "/list/{listId}/contact";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
+
+        // header params
+        if ($api_key !== null) {
+            $headerParams['api_key'] = $this->apiClient->getSerializer()->toHeaderValue($api_key);
+        }
+        // path params
+        if ($list_id !== null) {
+            $resourcePath = str_replace(
+                "{" . "listId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($list_id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'POST',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\Swagger\Client\Model\InlineResponse20015',
+                '/list/{listId}/contact'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\InlineResponse20015', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\InlineResponse20015', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -601,7 +809,7 @@ class ListApi
      *
      * @param string $api_key  (required)
      * @param \Swagger\Client\Model\ListAddUpdate $body List object that needs to be added (required)
-     * @return \Swagger\Client\Model\InlineResponse2008
+     * @return \Swagger\Client\Model\InlineResponse2009
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function listPost($api_key, $body)
@@ -617,7 +825,7 @@ class ListApi
      *
      * @param string $api_key  (required)
      * @param \Swagger\Client\Model\ListAddUpdate $body List object that needs to be added (required)
-     * @return Array of \Swagger\Client\Model\InlineResponse2008, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \Swagger\Client\Model\InlineResponse2009, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function listPostWithHttpInfo($api_key, $body)
@@ -669,15 +877,15 @@ class ListApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\InlineResponse2008',
+                '\Swagger\Client\Model\InlineResponse2009',
                 '/list'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\InlineResponse2008', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\InlineResponse2009', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\InlineResponse2008', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\InlineResponse2009', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
