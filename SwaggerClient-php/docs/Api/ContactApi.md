@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **contactIdentifyPost**
-> \Swagger\Client\Model\ContactResponse contactIdentifyPost($api_key, $team_id, $body)
+> \Swagger\Client\Model\ContactResponse contactIdentifyPost($api_key, $team_id, $contact_details)
 
 Identify a contact as user
 
@@ -23,10 +23,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $api_instance = new Swagger\Client\Api\ContactApi();
 $api_key = "api_key_example"; // string | 
 $team_id = "team_id_example"; // string | 
-$body = new \Swagger\Client\Model\Contact(); // \Swagger\Client\Model\Contact | Contact details
+$contact_details = new \Swagger\Client\Model\ContactRequest(); // \Swagger\Client\Model\ContactRequest | Contact details
 
 try {
-    $result = $api_instance->contactIdentifyPost($api_key, $team_id, $body);
+    $result = $api_instance->contactIdentifyPost($api_key, $team_id, $contact_details);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContactApi->contactIdentifyPost: ', $e->getMessage(), PHP_EOL;
@@ -40,7 +40,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **api_key** | **string**|  |
  **team_id** | **string**|  |
- **body** | [**\Swagger\Client\Model\Contact**](../Model/\Swagger\Client\Model\Contact.md)| Contact details |
+ **contact_details** | [**\Swagger\Client\Model\ContactRequest**](../Model/\Swagger\Client\Model\ContactRequest.md)| Contact details |
 
 ### Return type
 
@@ -58,7 +58,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **contactTrackPost**
-> \Swagger\Client\Model\TrackResponse contactTrackPost($api_key, $team_id, $contact_id, $tag)
+> \Swagger\Client\Model\TrackResponse contactTrackPost($api_key, $team_id, $email, $tag)
 
 Add tracking info using tags to a contact
 
@@ -72,11 +72,11 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $api_instance = new Swagger\Client\Api\ContactApi();
 $api_key = "api_key_example"; // string | 
 $team_id = "team_id_example"; // string | 
-$contact_id = "contact_id_example"; // string | 
+$email = "email_example"; // string | 
 $tag = "tag_example"; // string | 
 
 try {
-    $result = $api_instance->contactTrackPost($api_key, $team_id, $contact_id, $tag);
+    $result = $api_instance->contactTrackPost($api_key, $team_id, $email, $tag);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContactApi->contactTrackPost: ', $e->getMessage(), PHP_EOL;
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **api_key** | **string**|  |
  **team_id** | **string**|  |
- **contact_id** | **string**|  |
+ **email** | **string**|  |
  **tag** | **string**|  |
 
 ### Return type
