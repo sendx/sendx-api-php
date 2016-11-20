@@ -1,6 +1,6 @@
 <?php
 /**
- * Contact
+ * ContactRequest
  *
  * PHP version 5
  *
@@ -44,7 +44,7 @@ namespace Swagger\Client\Model;
 use \ArrayAccess;
 
 /**
- * Contact Class Doc Comment
+ * ContactRequest Class Doc Comment
  *
  * @category    Class */
 /**
@@ -53,21 +53,19 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class Contact implements ArrayAccess
+class ContactRequest implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Contact';
+    protected static $swaggerModelName = 'ContactRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'encrypted_team_id' => 'string',
-        'encrypted_id' => 'string',
         'first_name' => 'string',
         'last_name' => 'string',
         'email' => 'string',
@@ -87,8 +85,6 @@ class Contact implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'encrypted_team_id' => 'encryptedTeamId',
-        'encrypted_id' => 'encryptedId',
         'first_name' => 'firstName',
         'last_name' => 'lastName',
         'email' => 'email',
@@ -104,8 +100,6 @@ class Contact implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'encrypted_team_id' => 'setEncryptedTeamId',
-        'encrypted_id' => 'setEncryptedId',
         'first_name' => 'setFirstName',
         'last_name' => 'setLastName',
         'email' => 'setEmail',
@@ -121,8 +115,6 @@ class Contact implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'encrypted_team_id' => 'getEncryptedTeamId',
-        'encrypted_id' => 'getEncryptedId',
         'first_name' => 'getFirstName',
         'last_name' => 'getLastName',
         'email' => 'getEmail',
@@ -163,8 +155,6 @@ class Contact implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['encrypted_team_id'] = isset($data['encrypted_team_id']) ? $data['encrypted_team_id'] : null;
-        $this->container['encrypted_id'] = isset($data['encrypted_id']) ? $data['encrypted_id'] : null;
         $this->container['first_name'] = isset($data['first_name']) ? $data['first_name'] : null;
         $this->container['last_name'] = isset($data['last_name']) ? $data['last_name'] : null;
         $this->container['email'] = isset($data['email']) ? $data['email'] : null;
@@ -196,48 +186,6 @@ class Contact implements ArrayAccess
         return true;
     }
 
-
-    /**
-     * Gets encrypted_team_id
-     * @return string
-     */
-    public function getEncryptedTeamId()
-    {
-        return $this->container['encrypted_team_id'];
-    }
-
-    /**
-     * Sets encrypted_team_id
-     * @param string $encrypted_team_id
-     * @return $this
-     */
-    public function setEncryptedTeamId($encrypted_team_id)
-    {
-        $this->container['encrypted_team_id'] = $encrypted_team_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets encrypted_id
-     * @return string
-     */
-    public function getEncryptedId()
-    {
-        return $this->container['encrypted_id'];
-    }
-
-    /**
-     * Sets encrypted_id
-     * @param string $encrypted_id
-     * @return $this
-     */
-    public function setEncryptedId($encrypted_id)
-    {
-        $this->container['encrypted_id'] = $encrypted_id;
-
-        return $this;
-    }
 
     /**
      * Gets first_name
