@@ -72,7 +72,7 @@ class ContactRequest implements ArrayAccess
         'company' => 'string',
         'birthday' => 'string',
         'tags' => 'string[]',
-        'customFields' => 'string[]'
+        'custom_fields' => 'map[string,string]'
     ];
 
     public static function swaggerTypes()
@@ -91,7 +91,7 @@ class ContactRequest implements ArrayAccess
         'company' => 'company',
         'birthday' => 'birthday',
         'tags' => 'tags',
-        'customFields' => 'customFields'
+        'custom_fields' => 'customFields'
     ];
 
 
@@ -106,7 +106,7 @@ class ContactRequest implements ArrayAccess
         'company' => 'setCompany',
         'birthday' => 'setBirthday',
         'tags' => 'setTags',
-        'customFields' => 'setCustomFields'
+        'custom_fields' => 'setCustomFields'
     ];
 
 
@@ -121,7 +121,7 @@ class ContactRequest implements ArrayAccess
         'company' => 'getCompany',
         'birthday' => 'getBirthday',
         'tags' => 'getTags',
-        'customFields' => 'getCustomFields'
+        'custom_fields' => 'getCustomFields'
     ];
 
     public static function attributeMap()
@@ -161,7 +161,7 @@ class ContactRequest implements ArrayAccess
         $this->container['company'] = isset($data['company']) ? $data['company'] : null;
         $this->container['birthday'] = isset($data['birthday']) ? $data['birthday'] : null;
         $this->container['tags'] = isset($data['tags']) ? $data['tags'] : null;
-        $this->container['customFields'] = isset($data['customFields']) ? $data['customFields'] : null;
+        $this->container['custom_fields'] = isset($data['custom_fields']) ? $data['custom_fields'] : null;
     }
 
     /**
@@ -172,6 +172,9 @@ class ContactRequest implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = [];
+        if ($this->container['email'] === null) {
+            $invalid_properties[] = "'email' can't be null";
+        }
         return $invalid_properties;
     }
 
@@ -183,6 +186,9 @@ class ContactRequest implements ArrayAccess
      */
     public function valid()
     {
+        if ($this->container['email'] === null) {
+            return false;
+        }
         return true;
     }
 
@@ -312,23 +318,24 @@ class ContactRequest implements ArrayAccess
 
         return $this;
     }
+
     /**
-     * Gets customFields
-     * @return string[]
+     * Gets custom_fields
+     * @return map[string,string]
      */
     public function getCustomFields()
     {
-        return $this->container['customFields'];
+        return $this->container['custom_fields'];
     }
 
     /**
-     * Sets customFields
-     * @param string[] $customFields
+     * Sets custom_fields
+     * @param map[string,string] $custom_fields
      * @return $this
      */
-    public function setCustomFields($customFields)
+    public function setCustomFields($custom_fields)
     {
-        $this->container['customFields'] = $customFields;
+        $this->container['custom_fields'] = $custom_fields;
 
         return $this;
     }
