@@ -1,6 +1,6 @@
 <?php
 /**
- * Contact
+ * TrackRequest
  *
  * PHP version 5
  *
@@ -44,7 +44,7 @@ namespace Swagger\Client\Model;
 use \ArrayAccess;
 
 /**
- * Contact Class Doc Comment
+ * TrackRequest Class Doc Comment
  *
  * @category    Class */
 /**
@@ -53,28 +53,21 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class Contact implements ArrayAccess
+class TrackRequest implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Contact';
+    protected static $swaggerModelName = 'TrackRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'encrypted_team_id' => 'string',
-        'encrypted_id' => 'string',
-        'first_name' => 'string',
-        'last_name' => 'string',
-        'email' => 'string',
-        'company' => 'string',
-        'birthday' => 'string',
-        'tags' => 'string[]',
-        'custom_fields' => 'map[string,string]'
+        'add_tags' => 'string[]',
+        'remove_tags' => 'string[]'
     ];
 
     public static function swaggerTypes()
@@ -87,15 +80,8 @@ class Contact implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'encrypted_team_id' => 'encryptedTeamId',
-        'encrypted_id' => 'encryptedId',
-        'first_name' => 'firstName',
-        'last_name' => 'lastName',
-        'email' => 'email',
-        'company' => 'company',
-        'birthday' => 'birthday',
-        'tags' => 'tags',
-        'custom_fields' => 'customFields'
+        'add_tags' => 'addTags',
+        'remove_tags' => 'removeTags'
     ];
 
 
@@ -104,15 +90,8 @@ class Contact implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'encrypted_team_id' => 'setEncryptedTeamId',
-        'encrypted_id' => 'setEncryptedId',
-        'first_name' => 'setFirstName',
-        'last_name' => 'setLastName',
-        'email' => 'setEmail',
-        'company' => 'setCompany',
-        'birthday' => 'setBirthday',
-        'tags' => 'setTags',
-        'custom_fields' => 'setCustomFields'
+        'add_tags' => 'setAddTags',
+        'remove_tags' => 'setRemoveTags'
     ];
 
 
@@ -121,15 +100,8 @@ class Contact implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'encrypted_team_id' => 'getEncryptedTeamId',
-        'encrypted_id' => 'getEncryptedId',
-        'first_name' => 'getFirstName',
-        'last_name' => 'getLastName',
-        'email' => 'getEmail',
-        'company' => 'getCompany',
-        'birthday' => 'getBirthday',
-        'tags' => 'getTags',
-        'custom_fields' => 'getCustomFields'
+        'add_tags' => 'getAddTags',
+        'remove_tags' => 'getRemoveTags'
     ];
 
     public static function attributeMap()
@@ -163,15 +135,8 @@ class Contact implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['encrypted_team_id'] = isset($data['encrypted_team_id']) ? $data['encrypted_team_id'] : null;
-        $this->container['encrypted_id'] = isset($data['encrypted_id']) ? $data['encrypted_id'] : null;
-        $this->container['first_name'] = isset($data['first_name']) ? $data['first_name'] : null;
-        $this->container['last_name'] = isset($data['last_name']) ? $data['last_name'] : null;
-        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
-        $this->container['company'] = isset($data['company']) ? $data['company'] : null;
-        $this->container['birthday'] = isset($data['birthday']) ? $data['birthday'] : null;
-        $this->container['tags'] = isset($data['tags']) ? $data['tags'] : null;
-        $this->container['custom_fields'] = isset($data['custom_fields']) ? $data['custom_fields'] : null;
+        $this->container['add_tags'] = isset($data['add_tags']) ? $data['add_tags'] : null;
+        $this->container['remove_tags'] = isset($data['remove_tags']) ? $data['remove_tags'] : null;
     }
 
     /**
@@ -198,190 +163,43 @@ class Contact implements ArrayAccess
 
 
     /**
-     * Gets encrypted_team_id
-     * @return string
-     */
-    public function getEncryptedTeamId()
-    {
-        return $this->container['encrypted_team_id'];
-    }
-
-    /**
-     * Sets encrypted_team_id
-     * @param string $encrypted_team_id
-     * @return $this
-     */
-    public function setEncryptedTeamId($encrypted_team_id)
-    {
-        $this->container['encrypted_team_id'] = $encrypted_team_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets encrypted_id
-     * @return string
-     */
-    public function getEncryptedId()
-    {
-        return $this->container['encrypted_id'];
-    }
-
-    /**
-     * Sets encrypted_id
-     * @param string $encrypted_id
-     * @return $this
-     */
-    public function setEncryptedId($encrypted_id)
-    {
-        $this->container['encrypted_id'] = $encrypted_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets first_name
-     * @return string
-     */
-    public function getFirstName()
-    {
-        return $this->container['first_name'];
-    }
-
-    /**
-     * Sets first_name
-     * @param string $first_name
-     * @return $this
-     */
-    public function setFirstName($first_name)
-    {
-        $this->container['first_name'] = $first_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets last_name
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->container['last_name'];
-    }
-
-    /**
-     * Sets last_name
-     * @param string $last_name
-     * @return $this
-     */
-    public function setLastName($last_name)
-    {
-        $this->container['last_name'] = $last_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets email
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->container['email'];
-    }
-
-    /**
-     * Sets email
-     * @param string $email
-     * @return $this
-     */
-    public function setEmail($email)
-    {
-        $this->container['email'] = $email;
-
-        return $this;
-    }
-
-    /**
-     * Gets company
-     * @return string
-     */
-    public function getCompany()
-    {
-        return $this->container['company'];
-    }
-
-    /**
-     * Sets company
-     * @param string $company
-     * @return $this
-     */
-    public function setCompany($company)
-    {
-        $this->container['company'] = $company;
-
-        return $this;
-    }
-
-    /**
-     * Gets birthday
-     * @return string
-     */
-    public function getBirthday()
-    {
-        return $this->container['birthday'];
-    }
-
-    /**
-     * Sets birthday
-     * @param string $birthday
-     * @return $this
-     */
-    public function setBirthday($birthday)
-    {
-        $this->container['birthday'] = $birthday;
-
-        return $this;
-    }
-
-    /**
-     * Gets tags
+     * Gets add_tags
      * @return string[]
      */
-    public function getTags()
+    public function getAddTags()
     {
-        return $this->container['tags'];
+        return $this->container['add_tags'];
     }
 
     /**
-     * Sets tags
-     * @param string[] $tags
+     * Sets add_tags
+     * @param string[] $add_tags
      * @return $this
      */
-    public function setTags($tags)
+    public function setAddTags($add_tags)
     {
-        $this->container['tags'] = $tags;
+        $this->container['add_tags'] = $add_tags;
 
         return $this;
     }
 
     /**
-     * Gets custom_fields
-     * @return map[string,string]
+     * Gets remove_tags
+     * @return string[]
      */
-    public function getCustomFields()
+    public function getRemoveTags()
     {
-        return $this->container['custom_fields'];
+        return $this->container['remove_tags'];
     }
 
     /**
-     * Sets custom_fields
-     * @param map[string,string] $custom_fields
+     * Sets remove_tags
+     * @param string[] $remove_tags
      * @return $this
      */
-    public function setCustomFields($custom_fields)
+    public function setRemoveTags($remove_tags)
     {
-        $this->container['custom_fields'] = $custom_fields;
+        $this->container['remove_tags'] = $remove_tags;
 
         return $this;
     }

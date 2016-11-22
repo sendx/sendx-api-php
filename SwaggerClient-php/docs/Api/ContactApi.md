@@ -58,7 +58,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **contactTrackPost**
-> \Swagger\Client\Model\TrackResponse contactTrackPost($api_key, $team_id, $email, $tag)
+> \Swagger\Client\Model\TrackResponse contactTrackPost($api_key, $team_id, $email, $track_details)
 
 Add tracking info using tags to a contact
 
@@ -73,10 +73,10 @@ $api_instance = new Swagger\Client\Api\ContactApi();
 $api_key = "api_key_example"; // string | 
 $team_id = "team_id_example"; // string | 
 $email = "email_example"; // string | 
-$tag = "tag_example"; // string | 
+$track_details = new \Swagger\Client\Model\TrackRequest(); // \Swagger\Client\Model\TrackRequest | Track Details
 
 try {
-    $result = $api_instance->contactTrackPost($api_key, $team_id, $email, $tag);
+    $result = $api_instance->contactTrackPost($api_key, $team_id, $email, $track_details);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContactApi->contactTrackPost: ', $e->getMessage(), PHP_EOL;
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
  **api_key** | **string**|  |
  **team_id** | **string**|  |
  **email** | **string**|  |
- **tag** | **string**|  |
+ **track_details** | [**\Swagger\Client\Model\TrackRequest**](../Model/\Swagger\Client\Model\TrackRequest.md)| Track Details |
 
 ### Return type
 

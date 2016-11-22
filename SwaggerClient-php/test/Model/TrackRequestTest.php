@@ -1,6 +1,6 @@
 <?php
 /**
- * TrackResponseTest
+ * TrackRequestTest
  *
  * PHP version 5
  *
@@ -42,17 +42,17 @@
 namespace Swagger\Client;
 
 /**
- * TrackResponseTest Class Doc Comment
+ * TrackRequestTest Class Doc Comment
  *
  * @category    Class */
-// * @description TrackResponse
+// * @description TrackRequest
 /**
  * @package     Swagger\Client
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class TrackResponseTest extends \PHPUnit_Framework_TestCase
+class TrackRequestTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -88,25 +88,25 @@ class TrackResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "TrackResponse"
+     * Test "TrackRequest"
      */
-    public function testTrackResponse()
+    public function testTrackRequest()
     {
 
     }
 
     /**
-     * Test attribute "status"
+     * Test attribute "add_tags"
      */
-    public function testPropertyStatus()
+    public function testPropertyAddTags()
     {
 
     }
 
     /**
-     * Test attribute "message"
+     * Test attribute "remove_tags"
      */
-    public function testPropertyMessage()
+    public function testPropertyRemoveTags()
     {
 
     }
