@@ -101,7 +101,7 @@ class Configuration
      *
      * @var string
      */
-    protected $host = 'http://app.sendx.io/api/v1';
+    protected $host = 'https://app.sendx.io/api/v1';
 
     /**
      * Timeout (second) of the HTTP request, by default set to 0, no timeout

@@ -72,7 +72,7 @@ class ContactApi
     {
         if ($apiClient === null) {
             $apiClient = new ApiClient();
-            $apiClient->getConfig()->setHost('http://app.sendx.io/api/v1');
+            $apiClient->getConfig()->setHost('https://app.sendx.io/api/v1');
         }
 
         $this->apiClient = $apiClient;
