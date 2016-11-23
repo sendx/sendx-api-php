@@ -7,6 +7,12 @@
         "sdk",
         "api"
     ],
+    "repositories": [
+      {
+        "type": "git",
+        "url": "https://github.com/sendx/sendx-api-php.git"
+      }
+    ],
     "homepage": "http://swagger.io",
     "license": "Apache-2.0",
     "authors": [

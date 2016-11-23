@@ -1,8 +1,4 @@
-# PHP SendX API
-
-**NOTE:** All API calls contain 2 parameters - 'api_key' and 'team_id'. These can be inferred from your settings page 'https://app.sendx.io/setting' under the sections 'Api Key' and 'Team Id' respectively.
-
-SendX API has two methods:
+SendX REST API has two methods:
 
 * [Identify](#identify_api)
 * [Track](#track_api)
@@ -53,7 +49,7 @@ We don't delete any of the properties based on identify call. What this means is
     }
 
 
-The final contact will have firstName as **John**, birthday as **1989-03-03** present. Also both tags **Developer** and **API Team** shall be present alongwith custom fields **Designation** and **Age**.
+The the final contact will have firstName as **John**, birthday as **1989-03-03** present. Also both tags **Developer** and **API Team** shall be present alongwith custom fields **Designation** and **Age**.
 
 
 **Properties:**
@@ -61,70 +57,45 @@ The final contact will have firstName as **John**, birthday as **1989-03-03** pr
 * **firstName**: type string
 * **lastName**: type string
 * **email**: type string  
-* **newEmail**: type string  
 * **company**: type string  
 * **birthday**: type string with format **YYYY-MM-DD** eg: 2016-11-21  
 * **customFields**: type map[string]string   
 * **tags**: type array of string 
 
 
-In case email of an already existing contact needs to be updated then specify current email under email property and updated email under newEmail property.
-
 **Response:**
 
 > 
-{
-  "status": "200",
-  "message": "OK",
-  "data": {
-    "encryptedTeamId": "CLdh9Ig5GLIN1u8gTRvoja",
-    "encryptedId": "c9QF63nrBenCaAXe660byz",
-    "tags": [
-      "API Team",
-      "Tech"
-    ],
-    "firstName": "John",
-    "lastName": "Doe",
-    "email": "john.doe@gmail.com",
-    "company": "",
-    "birthday": "1989-03-03",
-    "customFields": {
-      "Age": "29",
-      "Designation": "Software Engineer"
+    {
+      "status": "200",
+      "message": "OK",
+      "data": {
+        "encryptedTeamId": "CLdh9Ig5GLIN1u8gTRvoja",
+        "encryptedId": "c9QF63nrBenCaAXe660byz",
+        "tags": [
+          "API Team",
+          "Tech"
+        ],
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "john.doe@gmail.com",
+        "company": "",
+        "birthday": "1989-03-03",
+        "customFields": {
+          "Age": "29",
+          "Designation": "Software Engineer"
+        }
+      }
     }
-  }
-}
 
 
 ## <a name="track_api"></a> Track API Method
 
 
-Track API Method is used to track a contact. In the track API object you can:
+Track API Method is used to associate **tags** with a contact. You can have automation rules based on tag addition and they will get executed. For eg:
 
-* **addTags**:
-* **removeTags**:
-
-You can have automation rules based on tag addition as well as tag removal and they will get executed. For eg:
-
-* On **user registration** tag start onboarding drip for him / her.
+* **On user registration** tag start onboarding drip for him / her.
 * **Account Upgrade** tag start add user to paid user list and start account expansion drip. 
-* On removal of **trial user** tag start upsell trial completed users drip.
-
-
-**Example Request:**
-
->
-  {
-     "addTags": ["blogger", "female"]
-  }
-
-
->
-  {
-     "addTags": ["paid user"],
-     "removeTags": ["trial user"]
-  }
-
 
 **Response:**
 
@@ -154,7 +125,7 @@ To install the bindings via [Composer](http://getcomposer.org/), add the followi
   "repositories": [
     {
       "type": "git",
-      "url": "https://github.com//.git"
+      "url": "https://github.com/sendx/sendx-api-php.git"
     }
   ],
   "require": {
@@ -193,10 +164,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $api_instance = new Swagger\Client\Api\ContactApi();
 $api_key = "api_key_example"; // string | 
 $team_id = "team_id_example"; // string | 
-$contact_details = new \Swagger\Client\Model\ContactRequest(); // \Swagger\Client\Model\ContactRequest | Contact details
+$body = new \Swagger\Client\Model\Contact(); // \Swagger\Client\Model\Contact | Contact details
 
 try {
-    $result = $api_instance->contactIdentifyPost($api_key, $team_id, $contact_details);
+    $result = $api_instance->contactIdentifyPost($api_key, $team_id, $body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContactApi->contactIdentifyPost: ', $e->getMessage(), PHP_EOL;
@@ -218,9 +189,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [Contact](docs/Model/Contact.md)
- - [ContactRequest](docs/Model/ContactRequest.md)
  - [ContactResponse](docs/Model/ContactResponse.md)
- - [TrackRequest](docs/Model/TrackRequest.md)
  - [TrackResponse](docs/Model/TrackResponse.md)
 
 
